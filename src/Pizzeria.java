@@ -18,13 +18,12 @@ public class Pizzeria {
     Scanner scanner = new Scanner(System.in);
     MenuCommand command = MenuCommand.readCommand(scanner);
     switch (command) {
-      case START:
-        Pizza pizza = Pizza.readData(scanner);
-        System.out.println("Делаем заказ");
-        // начать заказ
-        break;
       case UNEXPECTED://
         System.out.println("Некорректная команда");
+        break;
+      case START:
+        Pizza pizza = Pizza.readData(scanner);
+        // начать заказ
         break;
       case EXIT:
         return; // завершение работы метода main()
