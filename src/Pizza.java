@@ -5,7 +5,8 @@ import java.util.Set;
 
 public class Pizza {
 
-  private static final Map<String, Map<String, Double>> prices = new HashMap<>();
+  private static final Map<String, Map<String, Double>> prices = readFromCsv("res/pizzas.csv");
+  // CSV
 
   private final String name;
   private final String size;
@@ -49,5 +50,12 @@ public class Pizza {
       size = scanner.nextLine();
     }
     return new Pizza(name, size);
+  }
+
+  private static Map<String, Map<String, Double>> readFromCsv(String filename) {
+    // CSV - comma separated values - значения, разделенные
+    // самый простой формат таблиц
+    Map<String, Map<String, Double>> result = new HashMap<>();
+    return result;
   }
 }
