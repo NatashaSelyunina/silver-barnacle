@@ -1,9 +1,13 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Pizza {
+
+  private static final String SEP = ";";
 
   private static final Map<String, Map<String, Double>> prices = readFromCsv("res/pizzas.csv");
   // CSV
@@ -25,16 +29,16 @@ public class Pizza {
     price = sizeToPrice.get(size);
   }
 
-  public static Pizza readData(Scanner scanner) {
+  public static Pizza readInteractive(Scanner scanner) {
     System.out.println("Выберите пиццу:");
     for (String name : prices.keySet()) {
       System.out.println("- " + name);
     }
     System.out.print("Введите название: ");
     String name = scanner.nextLine();
-    while (prices.containsKey(name)) {
+    while (!prices.containsKey(name)) {
       System.out.println("Неккоректное название пиццы: " + name);
-      System.out.print("Выберите пиццу: ");
+      System.out.print("Введите название: ");
       name = scanner.nextLine();
     }
     Set<String> sizes = prices.get(name).keySet();
@@ -56,6 +60,29 @@ public class Pizza {
     // CSV - comma separated values - значения, разделенные
     // самый простой формат таблиц
     Map<String, Map<String, Double>> result = new HashMap<>();
+    File pizzasFile = new File(filename);
+    try {
+      Scanner scanner = new Scanner(pizzasFile);
+      while (scanner.hasNextLine()) {
+        String line = scanner.nextLine();
+        String[] cells = line.split(SEP);
+        try {
+          String pizza = cells[0];
+          String size = cells[1];
+          double price = Double.parseDouble(cells[2]);
+          if (!result.containsKey(pizza)) {
+            result.put(pizza, new HashMap<>());
+          }
+          // теперь словарь для пиццы точно есть в нашем словаре
+          result.get(pizza).put(size, price);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+          System.out.println("Некорректная строка файла: " + line);
+        }
+      }
+      scanner.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("Не найден файл: " + e);
+    }
     return result;
   }
 }

@@ -16,17 +16,19 @@ public class Pizzeria {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    MenuCommand command = MenuCommand.readCommand(scanner);
-    switch (command) {
-      case UNEXPECTED://
-        System.out.println("Некорректная команда");
-        break;
-      case START:
-        Pizza pizza = Pizza.readData(scanner);
-        // начать заказ
-        break;
-      case EXIT:
-        return; // завершение работы метода main()
+    while (true) {
+      MenuCommand command = MenuCommand.readCommand(scanner);
+      switch (command) {
+        case UNEXPECTED://
+          System.out.println("Некорректная команда");
+          break;
+        case START:
+          Pizza pizza = Pizza.readInteractive(scanner);
+          // начать заказ
+          break;
+        case EXIT:
+          return; // завершение работы метода main()
+      }
     }
   }
 }
