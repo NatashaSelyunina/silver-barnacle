@@ -29,30 +29,27 @@ public class Pizza {
     price = sizeToPrice.get(size);
   }
 
-  public static Pizza readInteractive(Scanner scanner) {
-    System.out.println("Выберите пиццу:");
-    for (String name : prices.keySet()) {
+  private static String readValueFromSet(Scanner scanner, Set<String> values, String title) {
+    System.out.println("Выберите " + title + ":");
+    for (String name : values) {
       System.out.println("- " + name);
     }
-    System.out.print("Введите название: ");
-    String name = scanner.nextLine();
-    while (!prices.containsKey(name)) {
-      System.out.println("Неккоректное название пиццы: " + name);
-      System.out.print("Введите название: ");
-      name = scanner.nextLine();
+    System.out.print("Введите " + title + ": ");
+    String value = scanner.nextLine();
+    while (!values.contains(value)) {
+      System.out.println("Неккоректное " + title + " пиццы: " + value);
+      System.out.print("Введите " + title + ": ");
+      value = scanner.nextLine();
     }
+    return value;
+  }
+
+  public static Pizza readInteractive(Scanner scanner) {
+    String name = readValueFromSet(scanner, prices.keySet(), "название");
+
     Set<String> sizes = prices.get(name).keySet();
-    System.out.println("Выберите размер:");
-    for (String size : sizes) {
-      System.out.println("- " + size);
-    }
-    System.out.print("Введите размер: ");
-    String size = scanner.nextLine();
-    while (!sizes.contains(size)) {
-      System.out.println("Неккоректный размер: " + size);
-      System.out.print("Введите размер: ");
-      size = scanner.nextLine();
-    }
+    String size = readValueFromSet(scanner, sizes, "размер");
+
     return new Pizza(name, size);
   }
 
