@@ -22,4 +22,3 @@ public class Task1 {
     return Integer.toString(Integer.parseInt((x % 10) + reverse(x / 10)));
   }
 }
-
