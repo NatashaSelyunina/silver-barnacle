@@ -11,13 +11,13 @@ public class Order {
   private LocalTime startTime; // время начала
   private int colors;          // количество цветов
   private double length;       // длина волос
-  private double price;        // сумма заказы
+  private double price;        // сумма заказа
 
   public Order(String name, LocalTime startTime, int colors, double length) {
     this.name = name;
     this.startTime = startTime;
-    this.colors = colors;
-    this.length = length;
+    this.colors = checkColors(colors);
+    this.length = checkLength(length);
     calculatePrice();
   }
 
@@ -49,12 +49,40 @@ public class Order {
     this.startTime = startTime;
   }
 
+  /**
+   * Проверка длины на корректность
+   *
+   * @param colors исходное количество цветов для проверки
+   * @return корректное количество цветов
+   */
+  private int checkColors(int colors) {
+    if (colors < 0) {
+      throw new IllegalArgumentException("Количество цветов не может быть отрицательным");
+    }
+    return colors;
+  }
+
   public void setColors(int colors) {
-    this.colors = colors;
+    this.colors = checkColors(colors);
+    calculatePrice();
+  }
+
+  /**
+   * Проверка длины на корректность
+   *
+   * @param length исходная длина
+   * @return корректная длина
+   */
+  private double checkLength(double length) {
+    if (length < 0) {
+      throw new IllegalArgumentException("Длина не может быть отрицательной");
+    }
+    return length;
   }
 
   public void setLength(double length) {
-    this.length = length;
+    this.length = checkLength(length);
+    calculatePrice();
   }
 
   public void setPrice(double price) {
