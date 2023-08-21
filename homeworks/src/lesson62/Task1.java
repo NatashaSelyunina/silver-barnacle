@@ -12,6 +12,7 @@ public class Task1 {
 
     int x = scanner.nextInt();
     String result = reverse(x);
+    System.out.println(result);
   }
 
   public static String reverse(int x) {
