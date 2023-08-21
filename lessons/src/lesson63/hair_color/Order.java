@@ -109,7 +109,7 @@ public class Order {
     System.out.print("Введите имя заказчика: ");
     String name = scanner.nextLine();
     System.out.print("Введите время начала: ");
-    LocalTime startTime;
+    LocalTime startTime = LocalTime.now();
     boolean startTimeRead = false;
     while (!startTimeRead) {
       String startTimeInput = scanner.nextLine();
