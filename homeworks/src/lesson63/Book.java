@@ -45,6 +45,7 @@ public class Book {
     String name = scanner.nextLine();
     System.out.print("Введите название книги: ");
     String title = scanner.nextLine();
+    System.out.print("Введите количество страниц: ");
     while (!scanner.hasNextInt()) {
       System.out.println("Некорректный ввод " + scanner.nextLine());
       System.out.print("Введите целое число: ");
