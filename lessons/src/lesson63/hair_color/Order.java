@@ -1,6 +1,7 @@
 package lesson63.hair_color;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Order {
@@ -102,16 +103,36 @@ public class Order {
    *
    * @param scanner источник данных
    * @return прочитанный заказ
+   * @throws java.time.format.DateTimeParseException при некорректном вводе времени начала
    */
   public static Order interactiveRead(Scanner scanner) {
     System.out.print("Введите имя заказчика: ");
     String name = scanner.nextLine();
     System.out.print("Введите время начала: ");
-    LocalTime startTime = LocalTime.parse(scanner.nextLine());
+    LocalTime startTime;
+    boolean startTimeRead = false;
+    while (!startTimeRead) {
+      String startTimeInput = scanner.nextLine();
+      try {
+        startTime = LocalTime.parse(scanner.nextLine());
+        startTimeRead = true;
+      } catch (DateTimeParseException e) {
+        System.out.println("Некорректный ввод: " + startTimeInput);
+        System.out.print("Введите время в формате НН:ММ: ");
+      }
+    }
     System.out.print("Укажите количество цветов: ");
+    while (!scanner.hasNextInt()) {
+      System.out.println("Некорректный ввод: " + scanner.nextLine());
+      System.out.print("введите целое число: ");
+    }
     int colors = scanner.nextInt();
     scanner.nextLine();
     System.out.print("Укажите длину волос в сантиметрах: ");
+    while (!scanner.hasNextDouble()) {
+      System.out.println("Некорректный ввод: " + scanner.nextLine());
+      System.out.print("введите число: ");
+    }
     double length = scanner.nextDouble();
     scanner.nextLine();
     return new Order(name, startTime, colors, length);
