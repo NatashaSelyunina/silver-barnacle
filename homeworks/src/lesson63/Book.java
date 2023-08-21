@@ -52,6 +52,7 @@ public class Book {
     }
     int pages = scanner.nextInt();
     scanner.nextLine();
+    System.out.println();
     return new Book(name, title, pages);
   }
 }

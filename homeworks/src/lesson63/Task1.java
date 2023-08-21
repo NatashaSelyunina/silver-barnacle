@@ -23,6 +23,7 @@ public class Task1 {
 
     System.out.println("Отсортируем книги по авторам: ");
     printBooksByAuthorOrTitle(books);
+    printBooks(books);
   }
 
   private static void printBooksByAuthorOrTitle(ArrayList<Book> books) {
@@ -35,5 +36,11 @@ public class Task1 {
         return o1.getTitle().compareTo(o2.getTitle());
       }
     });
+  }
+
+  public static void printBooks(ArrayList<Book> books) {
+    for (int i = 0; i < books.size(); i++) {
+      System.out.println((i + 1) + ". " + books.get(i));
+    }
   }
 }
