@@ -1,5 +1,7 @@
 package lesson63;
 
+import java.util.Scanner;
+
 public class Book {
 
   // Используйте класс Book из домашнего задания к уроку 53
@@ -36,5 +38,19 @@ public class Book {
         ", title='" + title + '\'' +
         ", pages=" + pages +
         '}';
+  }
+
+  public static Book interactiveRead(Scanner scanner) {
+    System.out.print("Введите имя автора: ");
+    String name = scanner.nextLine();
+    System.out.print("Введите название книги: ");
+    String title = scanner.nextLine();
+    while (!scanner.hasNextInt()) {
+      System.out.println("Некорректный ввод " + scanner.nextLine());
+      System.out.print("Введите целое число: ");
+    }
+    int pages = scanner.nextInt();
+    scanner.nextLine();
+    return new Book(name, title, pages);
   }
 }
