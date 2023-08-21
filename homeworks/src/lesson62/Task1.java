@@ -9,6 +9,9 @@ public class Task1 {
   // в обратном порядке (развернёт число).
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
+
+    int x = scanner.nextInt();
+    String result = reverse(x);
   }
 
   public static String reverse(int x) {
