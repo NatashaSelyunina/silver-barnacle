@@ -1,6 +1,7 @@
 package lesson63;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Task1 {
@@ -19,5 +20,20 @@ public class Task1 {
       Book book = Book.interactiveRead(scanner);
       books.add(book);
     }
+
+    System.out.println("Отсортируем книги по авторам: ");
+    printBooksByAuthorOrTitle(books);
+  }
+
+  private static void printBooksByAuthorOrTitle(ArrayList<Book> books) {
+    books.sort(new Comparator<Book>() {
+      @Override
+      public int compare(Book o1, Book o2) {
+        if (o1.getAuthor().compareTo(o2.getAuthor()) != 0) {
+          return o1.getAuthor().compareTo(o2.getAuthor());
+        }
+        return o1.getTitle().compareTo(o2.getTitle());
+      }
+    });
   }
 }
