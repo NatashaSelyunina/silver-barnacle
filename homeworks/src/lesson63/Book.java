@@ -40,6 +40,12 @@ public class Book {
         '}';
   }
 
+  /**
+   * Интерактивное чтение данных о книге
+   *
+   * @param scanner источник данных
+   * @return прочитанную книгу
+   */
   public static Book interactiveRead(Scanner scanner) {
     System.out.print("Введите имя автора: ");
     String name = scanner.nextLine();

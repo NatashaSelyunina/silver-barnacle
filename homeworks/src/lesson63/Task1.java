@@ -8,6 +8,7 @@ public class Task1 {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
+
     System.out.print("Введите количество книг: ");
     while (!scanner.hasNextInt()) {
       System.out.println("Некорректный ввод " + scanner.nextLine());
@@ -15,6 +16,7 @@ public class Task1 {
     }
     int size = scanner.nextInt();
     scanner.nextLine();
+
     ArrayList<Book> books = new ArrayList<>(size);
     for (int i = 0; i < size; i++) {
       Book book = Book.interactiveRead(scanner);
@@ -26,6 +28,11 @@ public class Task1 {
     printBooks(books);
   }
 
+  /**
+   * Сортировка книг по авторам, при совпадении - по названиям
+   *
+   * @param books отсортированный список
+   */
   private static void printBooksByAuthorOrTitle(ArrayList<Book> books) {
     books.sort(new Comparator<Book>() {
       @Override
@@ -38,6 +45,11 @@ public class Task1 {
     });
   }
 
+  /**
+   * Нумерация списка книг
+   *
+   * @param books пронумерованный список
+   */
   public static void printBooks(ArrayList<Book> books) {
     for (int i = 0; i < books.size(); i++) {
       System.out.println((i + 1) + ". " + books.get(i));
