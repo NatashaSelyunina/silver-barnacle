@@ -31,7 +31,7 @@ public class Task1 {
   /**
    * Сортировка книг по авторам, при совпадении - по названиям
    *
-   * @param books отсортированный список
+   * @param books список книг
    */
   private static void printBooksByAuthorOrTitle(ArrayList<Book> books) {
     books.sort(new Comparator<Book>() {
@@ -48,7 +48,7 @@ public class Task1 {
   /**
    * Нумерация списка книг
    *
-   * @param books пронумерованный список
+   * @param books список книг
    */
   public static void printBooks(ArrayList<Book> books) {
     for (int i = 0; i < books.size(); i++) {
