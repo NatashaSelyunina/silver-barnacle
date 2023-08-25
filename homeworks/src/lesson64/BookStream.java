@@ -24,6 +24,6 @@ public class BookStream {
           }
           return book1.getTitle().compareTo(book2.getTitle());
         })
-        .forEach(book -> System.out.println(book));
+        .forEach(System.out::println);
   }
 }
