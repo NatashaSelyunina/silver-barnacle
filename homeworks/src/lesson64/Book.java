@@ -46,7 +46,7 @@ public class Book {
    * @param scanner источник данных
    * @return прочитанную книгу
    */
-  public static lesson63.Book interactiveRead(Scanner scanner) {
+  public static Book interactiveRead(Scanner scanner) {
     System.out.print("Введите имя автора: ");
     String name = scanner.nextLine();
     System.out.print("Введите название книги: ");
@@ -59,6 +59,6 @@ public class Book {
     int pages = scanner.nextInt();
     scanner.nextLine();
     System.out.println();
-    return new lesson63.Book(name, title, pages);
+    return new Book(name, title, pages);
   }
 }
